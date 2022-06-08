@@ -1,0 +1,200 @@
+#nav {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+
+#account-link {
+    margin-left: 200px;
+    float: right;
+    color:#3a3a3a;
+}
+
+
+#wrapper {
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    width: 100%;
+    margin: auto;
+}
+
+nav {
+    background-color: #3a3a3a;
+    margin-top: 1%;
+}
+
+#footer-notes {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+hr {border-top: 3px solid #3a3a3a;}
+
+#nav li {display: inline;}
+
+#nav a {
+    display: inline-flex;
+    color: #ffffff;
+    text-align: center;
+    padding: 14px 12px;
+    text-decoration: none;
+}
+
+#nav li a:hover {background-color: #4c96d7;}
+
+h1, a, p, form, button{
+    font-family: 'Share Tech Mono', monospace;
+    text-decoration: none;
+}
+h2, h3 {
+    font-family: 'Share Tech Mono', monospace;
+    color: #4c96d7;
+}
+
+#img-info {
+    padding-left: 3%;
+}
+
+#main-image {
+    width: 100%;
+    height: auto;
+    margin-bottom: 100px;    
+}
+button {
+    background-color: #4c96d7;
+    padding: .75% 2% .75% 2%;
+}
+#content-title {
+    padding-left: 1%;
+}
+#container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    text-align: center;
+}
+#order-list-heading-1 {
+    order: -1;
+    flex: 1 0 20%;
+}
+#order-list-heading-2 {
+    order: -1;
+    flex: 1 0 80%;
+}
+#left-list {
+    order: 0;
+    flex: 1 0 50%;
+    display: flex;
+    flex-wrap: wrap;
+}
+#right-list {
+    order: 0;
+    flex: 1 0 50%;
+}
+#right-list li {
+    font-family: 'Share Tech Mono', monospace;
+    padding: 1%;
+}
+.order {
+    background-color: #4c96d7;
+    border: solid black 1px;
+    padding: 5% 20% 5% 20%;
+}
+#review-list {text-align: left;}
+
+.top-items {
+    align-items: flex-start;
+}
+.bottom-items {
+    align-items: flex-end;
+}
+
+#upgrades-section {
+    order: 1;
+    width: 100%;
+}
+#review-section {
+    order: 0;
+    width: 100%;
+}
+
+#purchase-link {
+    position: absolute;
+    top: 47%; 
+    left: 40%;         
+}
+
+#bottom-items {
+    background-color: #4c96d7;
+    padding: 10%;
+}
+
+#add-vehicle-form {
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+}
+
+.vehicle-form-element {
+    margin-bottom: 10%;
+}
+
+#new-classification-form {
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+}
+
+/*************    FOR REGISTRATION PAGE   ****************/
+form {
+    padding-left: 1%;
+}
+#showPassword {
+    background-color:#3a3a3a;
+    color:#ffffff;
+}
+#registerClient {
+    background-color:#4c96d7;
+    
+}
+
+
+
+
+/*************    FOR SIGN IN PAGE   ****************/
+#newAccountDiv {
+    padding-top: 5%;
+    padding-left: 1%;
+    text-decoration: underline;
+}
+
+@media only screen and (min-width: 700px) {
+    body { 
+        background-image: url("/phpmotors/images/site/small_check.jpg");
+        width: 100%;
+    }
+
+    #wrapper {
+        border: 5px solid #4c96d7;
+        border-radius: 8px;
+        width: 70%;
+    }
+
+    #upgrades-section {
+        order: 0;
+        width: 50%;
+    }
+    #review-section {
+        order: 1;
+        width: 50%;
+    }
+
+    #purchase-link {
+        position: static;
+    }
+
+}
+
