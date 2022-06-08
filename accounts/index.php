@@ -44,8 +44,17 @@ switch ($action) {
         $clientEmail = trim(filter_input(INPUT_POST, 'clientEmail', FILTER_SANITIZE_EMAIL));
         $clientPassword = trim(filter_input(INPUT_POST, 'clientPassword', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
 
+        // Check that the email and password are valid
         $clientEmail = checkEmail($clientEmail);
         $checkPassword = checkPassword($clientPassword);
+
+        // Check for existing email address
+        $existingEmail = checkExistingEmail($clientEmail);
+        if($existingEmail) {
+            $message = '<p class="notice">That email address already exists. Do you want to login instead?</p>';
+            include '../view/login.php';
+            exit;
+        }
         
         // Check for missing data
         if(empty($clientFirstname) || empty($clientLastname) || empty($clientEmail) || empty($checkPassword)){
@@ -61,6 +70,8 @@ switch ($action) {
 
         // Check and report the result
         if($regOutcome === 1){
+            // SET COOKIES
+            setcookie('firstname', $clientFirstname, strtotime('+1 year'), '/');
             $message = "<p>Thanks for registering $clientFirstname. Please use your email and password to login.</p>";
             include '../view/login.php';
             exit;
