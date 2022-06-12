@@ -2,6 +2,9 @@
 
 // THIS IS THE MAIN CONTROLLER
 
+// Create or access a Session
+session_start();
+
 // database connection file
 require_once 'library/connections.php';
 // PHP Motors model

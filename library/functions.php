@@ -26,5 +26,4 @@ function buildNavList($classifications) {
 
     return $navList;
 }
-
 ?>

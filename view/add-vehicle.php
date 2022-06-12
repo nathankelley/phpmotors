@@ -1,4 +1,10 @@
 <?php 
+// CHECK THAT USER IN CURRENT SESSION HAS AUTHORIZATION
+// IF NOT, RETURN TO HOME VIEW
+if(!$_SESSION['loggedin'] && !$_SESSION['clientData']['clientLevel'] > 1) {
+    header('Location: /phpmotors/?action=home');
+}
+
 // Build the select list
 $classificationList = '<select name="classificationId" id="classification">';
 $classificationList .= '<option value="choose">Choose Car Classification</option>';

@@ -148,6 +148,10 @@ button {
     width: 25%;
 }
 
+#client-welcome {
+    float: right;
+}
+
 /*************    FOR REGISTRATION PAGE   ****************/
 form {
     padding-left: 1%;
@@ -161,8 +165,26 @@ form {
     
 }
 
+/*************    FOR USER ADMIN PAGE   ****************/
+.user-data {
+    font-family: 'Share Tech Mono', monospace;
+}
+
+#welcome-logout-link {
+    display: flex;
+    flex-direction: row;
+    float: right;
+    padding: 2%;
+}
+
+header {
+    font-family: 'Share Tech Mono', monospace;
+}
 
 
+#admin-inv-man, #admin-page-head {
+    padding-left: 1%;
+}
 
 /*************    FOR SIGN IN PAGE   ****************/
 #newAccountDiv {

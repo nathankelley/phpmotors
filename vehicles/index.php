@@ -2,6 +2,9 @@
 
 // THIS IS THE VEHICLES CONTROLLER
 
+// Create or access a Session
+session_start();
+
 // database connection file
 require '../library/connections.php';
 // PHP Motors model
@@ -18,19 +21,6 @@ $classifications = getClassifications();
 
 // navigation bar using $classifications array
 $navList = buildNavList($classifications);
-
-
-// car classification drop down select
-// $classificationList = '<select name="classificationId" id="classification">';
-// $classificationList .= '<option value="choose">Choose Car Classification</option>';
-// foreach ($classifications as $classification) {
-//     $classificationList .= "<option value='$classification[classificationId]'>$classification[classificationName]</option>";
-// }
-// $classificationList .= '</select>';
-//echo $classificationList;
-//exit;
-
-
 
 
 $action = filter_input(INPUT_POST, 'action');

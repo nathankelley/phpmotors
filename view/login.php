@@ -29,8 +29,8 @@
 
         <main>
         <?php
-            if (isset($message)) {
-                echo $message;
+            if (isset($_SESSION['message'])) {
+                echo $_SESSION['message'];
             }
         ?>
             <form action="/phpmotors/accounts/index.php" method="post" id="loginForm">
