@@ -1,9 +1,10 @@
 <?php 
     // CHECK THAT USER IN CURRENT SESSION HAS AUTHORIZATION
     // IF NOT, RETURN TO HOME VIEW
-    if(!$_SESSION['loggedin'] && !$_SESSION['clientData']['clientLevel'] > 1) {
-        header('Location: /phpmotors/?action=home');
-    }
+    if($_SESSION['clientData']['clientLevel'] < 2) {
+        header('Location: /phpmotors/');
+        exit;
+        }
 ?><!DOCTYPE html>
 <html lang="en">
     <head>
@@ -41,6 +42,28 @@
                     Add Vehicle
                 </a></li>
             </ul>
+
+            <a href="/phpmotors/vehicles/index.php?action=getInventoryItems">Click</a>
+    <?php
+        if (isset($message)) {
+            echo $message;
+        }
+        if (isset($classificationList)) {
+            echo '<h2>Vehicles By Classification</h2>'; 
+            echo '<p>Choose a classification to see those vehicles</p>'; 
+            echo $classificationList;
+        }
+    ?>
+
+    <p>
+        <?php 
+        echo $message;
+        ?>
+    </p>
+    <noscript>
+        <p><strong>JavaScript Must Be Enabled to Use this Page.</strong></p>
+    </noscript>
+    <table id="inventoryDisplay"></table>
         </main>
         <aside></aside>
         <footer>
@@ -48,5 +71,6 @@
         </footer>
         
     </div>
+    <script src="/phpmotors/js/inventory.js"></script>
     </body>
-</html>
+</html><?php unset($_SESSION['message']); ?>
