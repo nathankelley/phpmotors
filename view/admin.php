@@ -2,7 +2,6 @@
     if(!isset($_SESSION['loggedin'])) {
         header('Location: /phpmotors/?action=home');
     }
-
 ?><!DOCTYPE html>
 <html lang="en">
     <head>
@@ -48,6 +47,18 @@
                     <?php echo "Email: ".$_SESSION['clientData']['clientEmail'] ?>
                 </li>
             </ul>
+
+            <?php
+                if (isset($_SESSION['message'])) {
+                    echo $_SESSION['message'];
+                }
+            ?>
+
+            <div id="account-management-link">
+                <h1>Account Management</h1>
+                <h3>Use this link to update account information.</h3>
+                <a href="/phpmotors/accounts/index.php?action=client-update" title="Update Account Information">Update Account Information</a>
+            </div>
 
             <?php 
             if($_SESSION['clientData']['clientLevel'] > 1) {

@@ -5,24 +5,6 @@
         header('Location: /phpmotors/');
         exit;
     }
-
-// Build the classifications option list
-$classifList = '<select name="classificationId" id="classificationId">';
-$classifList .= "<option>Choose a Car Classification</option>";
-foreach ($carClassifications as $classification) {
- $classifList .= "<option value='$classification[classificationId]'";
- if(isset($classificationId)){
-  if($classification['classificationId'] === $classificationId){
-   $classifList .= ' selected ';
-  }
- } elseif(isset($invInfo['classificationId'])){
- if($classification['classificationId'] === $invInfo['classificationId']){
-  $classifList .= ' selected ';
- }
-}
-$classifList .= ">$classification[classificationName]</option>";
-}
-$classifList .= '</select>';
 ?><!DOCTYPE html>
 <html lang="en">
     <head>
@@ -49,7 +31,7 @@ $classifList .= '</select>';
         </div>
             <div id="navigation">
                 <nav>
-                    <?php //require $_SERVER['DOCUMENT_ROOT'].'/phpmotors/snippets/navigation.php';
+                    <?php
                     echo $navList; ?>  
                 </nav>
             </div>
@@ -88,9 +70,7 @@ $classifList .= '</select>';
                 </label>
 
                 <label for="invDescription"><strong>Description</strong>
-                    <textarea id="invDescription" name="invDescription" class="vehicle-form-element" required>
-
-                    <?php if(isset($invDescription)){ echo $invDescription; } elseif(isset($invInfo['invDescription'])) {echo $invInfo['invDescription']; }?>
+                    <textarea id="invDescription" name="invDescription" class="vehicle-form-element" required><?php if(isset($invInfo['invDescription'])) {echo $invInfo['invDescription']; }?>
                     </textarea>
                 </label>
 

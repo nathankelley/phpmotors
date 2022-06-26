@@ -35,37 +35,33 @@
 	            echo "Delete $invInfo[invMake] $invInfo[invModel]";} ?></h1>
             </div>
 
-            <p><strong>*Note all Fields are Required</strong></p>
+            <div id="notes">
+                <p><strong>*Note all Fields are Required</strong></p>
 
-            <?php
-               if (isset($message)) {
-                echo $message;
-            }
-            ?>
+                <?php
+                if (isset($message)) {
+                    echo $message;
+                }
+                ?>
 
-            <form id="add-vehicle-form" method="post" action="/phpmotors/vehicles/index.php">
-                <div id="classification-list" class="vehicle-form-element">
-                    <?php
-                        echo $classificationList;
-                    ?>
-                </div>
-                <label for="invMake"><strong>Make</strong>
+                <p>Confirm Vehicle Deletion. The delete is permanent.</p>
+            </div>
+            <form id="delete-vehicle-form" method="post" action="/phpmotors/vehicles/index.php">
+                <label for="invMake"><strong>Make</strong><br>
                     <input type="text" id="invMake" name="invMake" class="vehicle-form-element" required readonly
 
                     <?php if(isset($invInfo['invMake'])) {echo "value='$invInfo[invMake]'"; }?> >
                 </label>
 
-                <label for="invModel"><strong>Model</strong>
+                <label for="invModel"><strong>Model</strong><br>
                     <input type="text" id="invModel" name="invModel" class="vehicle-form-element" required
 
                     <?php if(isset($invInfo['invModel'])) {echo "value='$invInfo[invModel]'"; }?> >
                 </label>
 
-                <label for="invDescription"><strong>Description</strong>
+                <label for="invDescription"><strong>Description</strong><br>
                     <textarea id="invDescription" name="invDescription" class="vehicle-form-element" required><?php if(isset($invInfo['invDescription'])) {echo $invInfo['invDescription']; }?></textarea>
                 </label>
-
-                <p>Confirm Vehicle Deletion. The delete is permanent.</p>
 
                 <button type="submit" id="add-vehicle-btn" name="submit" value="Delete Vehicle" class="vehicle-form-element">
                     Delete Vehicle

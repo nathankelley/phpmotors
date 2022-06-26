@@ -72,9 +72,6 @@ button {
     background-color: #4c96d7;
     padding: .75% 2% .75% 2%;
 }
-#content-title {
-    padding-left: 1%;
-}
 #container {
     display: flex;
     flex-direction: row;
@@ -143,6 +140,15 @@ button {
     width: 25%;
 }
 
+#delete-vehicle-form {
+    display: flex;
+    flex-direction: column;
+    padding: 3%;
+    margin: 3%;
+    border: 2px solid grey;
+    border-style: inset;
+}
+
 .vehicle-form-element {
     margin-bottom: 10%;
 }
@@ -155,6 +161,10 @@ button {
 
 #client-welcome {
     float: right;
+}
+
+#notes {
+    padding-left: 1%;
 }
 
 /*************    FOR REGISTRATION PAGE   ****************/
@@ -187,7 +197,7 @@ header {
 }
 
 
-#admin-inv-man, #admin-page-head {
+#admin-inv-man, #admin-page-head, #account-management-link {
     padding-left: 1%;
 }
 
@@ -198,8 +208,32 @@ header {
     text-decoration: underline;
 }
 
+/*************    FOR VEHICLE LISTS   ****************/
+#inv-display {
+    list-style-type: none;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+}
+#inv-display h2 {
+    font-size: 1rem;
+}
+#inv-display li {
+    text-align: center;
+    max-width: 200px;
+    height: 250px;
+    justify-content: space-between;
+    border: 1px solid black;
+    margin: 1%;
+}
+#inv-display div {
+    width: 100%;
+}
 
 
+/*************    FOR CLIENT UPDATE PAGE   ****************/
+#update-password-form, #account-update-form {
+    padding-left: 1%;
+}
 
 @media only screen and (min-width: 700px) {
     body { 
@@ -226,5 +260,8 @@ header {
         position: static;
     }
 
+    #content-title {
+        padding-left: 1%;
+    }
 }
 

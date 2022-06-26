@@ -1,5 +1,13 @@
 <?php
 
+function write_to_console($data) {
+
+    $console = 'console.log(' . json_encode($data) . ');';
+    $console = sprintf('<script>%s</script>', $console);
+    echo $console;
+   }
+
+
 // A library of custom functions for our code to perform a variety of tasks //
 
 
@@ -18,9 +26,12 @@ function checkPassword($clientPassword) {
 // BUILD THE NAVIGATION LIST    
 function buildNavList($classifications) {
     $navList = '<ul id="nav">';
-    $navList .= "<li><a href='/phpmotors/index.php' title='View the PHP Motors home page'>Home</a></li>";
+    $navList .= "<li><a href='/phpmotors/' title='View the PHP Motors home page'>Home</a></li>";
     foreach ($classifications as $classification) {
-        $navList .= "<li><a href='/phpmotors/index.php?action=".urlencode($classification['classificationName'])."' title='View our $classification[classificationName] product line'>$classification[classificationName]</a></li>";
+        $navList .= "<li>
+        <a href='/phpmotors/vehicles/?action=classification&classificationName=".urlencode($classification['classificationName']).
+        "' title='View our $classification[classificationName] lineup of vehicles'>$classification[classificationName]</a>
+        </li>";
     }
     $navList .= '</ul>';
 
@@ -37,4 +48,41 @@ function buildClassificationList($classifications){
     $classificationList .= '</select>'; 
     return $classificationList; 
    }
+
+
+// THIS FUNCTION WILL BUILD A DISPLAY OF VEHICLES
+function buildVehiclesDisplay($vehicles){
+    $dv = '<ul id="inv-display">';
+    foreach ($vehicles as $vehicle) {
+     $dv .= '<a href="/phpmotors/vehicles/?action="vehicle-detail&classificationId"" alt="">';
+     $dv .= '<div class="vehicle-div">';
+     $dv .= '<li>';
+     $dv .= "<img src='$vehicle[invThumbnail]' alt='Image of $vehicle[invMake] $vehicle[invModel] on phpmotors.com'>";
+     $dv .= '<hr>';
+     $dv .= "<h2>$vehicle[invMake] $vehicle[invModel]</h2>";
+     $dv .= "<span>$vehicle[invPrice]</span>";
+     $dv .= '</li>';
+     $dv .= '</div>';
+     $dv .= '</a>';
+    }
+    $dv .= '</ul>';
+    return $dv;
+   }
+
+// THIS FUNCTION WILL DISPLAY VEHICLE INFO
+function buildSpecificVehicleDisplay($vehicles) {
+    $dv = '<div id="vehicle-display"';
+    foreach ($vehicles as $vehicle) {
+        $dv .= "<figure>";
+        $dv .= "<img src='$vehicle[invImage]' alt='Image of $vehicle[invMake] $vehicle[invModel] on phpmotors.com'>";
+        $dv .= "<figcaption>$vehicle[invPrice]</figcaption>";
+        $dv .= "</figure>";
+        $dv .= "<h2>$vehicle[invMake] $vehicle[invModel]</h2>";
+        $dv .= "<p>$vehicle[invDescription]</p>";
+        $dv .= "<h3>$vehicle[invColor]</h3>";
+        $dv .= "<h3>$vehicle[invStock]</h3>";
+       }
+       $dv .= '</div>';
+       return $dv;
+}
 ?>

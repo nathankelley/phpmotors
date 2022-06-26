@@ -43,7 +43,6 @@
                 </a></li>
             </ul>
 
-            <a href="/phpmotors/vehicles/index.php?action=getInventoryItems">Click</a>
     <?php
         if (isset($message)) {
             echo $message;
@@ -54,12 +53,7 @@
             echo $classificationList;
         }
     ?>
-
-    <p>
-        <?php 
-        echo $message;
-        ?>
-    </p>
+    
     <noscript>
         <p><strong>JavaScript Must Be Enabled to Use this Page.</strong></p>
     </noscript>

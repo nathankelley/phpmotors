@@ -56,7 +56,7 @@ function regInventory($invMake, $invModel, $invDescription, $invImage, $invThumb
 function getInventoryByClassification($classificationId){ 
     $db = phpmotorsConnect(); 
     $sql = 'SELECT * FROM inventory WHERE classificationId = :classificationId'; 
-    echo "String";
+    //echo "String";
     $stmt = $db->prepare($sql); 
     $stmt->bindValue(':classificationId', $classificationId, PDO::PARAM_INT); 
     $stmt->execute(); 
@@ -121,6 +121,18 @@ function deleteVehicle($invId) {
     $rowsChanged = $stmt->rowCount();
     $stmt->closeCursor();
     return $rowsChanged;
+   }
+
+// THIS FUNCTION WILL GET THE LIST OF VEHICLES
+function getVehiclesByClassification($classificationName){
+    $db = phpmotorsConnect();
+    $sql = 'SELECT * FROM inventory WHERE classificationId IN (SELECT classificationId FROM carclassification WHERE classificationName = :classificationName)';
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':classificationName', $classificationName, PDO::PARAM_STR);
+    $stmt->execute();
+    $vehicles = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $stmt->closeCursor();
+    return $vehicles;
    }
 
 ?>

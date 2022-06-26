@@ -22,6 +22,8 @@ $classifications = getClassifications();
 // navigation bar using $classifications array
 $navList = buildNavList($classifications);
 
+$classificationList = buildClassificationList($classifications);
+
 
 $action = filter_input(INPUT_POST, 'action');
 if ($action == NULL) {
@@ -32,7 +34,7 @@ if ($action == NULL) {
 switch ($action) {
     case 'error':
         include '../view/500.php';
-    break;
+        break;
     case 'add-classification':
         // Filter and store the data
         $classificationName = trim(filter_input(INPUT_POST, 'classificationName', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
@@ -54,8 +56,7 @@ switch ($action) {
             exit;
         }
 
-    break;
-
+        break;
     case 'add-vehicle':
         // Filter and store the data
         $invMake = trim(filter_input(INPUT_POST, 'invMake', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
@@ -89,17 +90,15 @@ switch ($action) {
             include '../view/add-vehicle.php';
             exit;
         }
-    break;
+        break;
     case 'getInventoryItems':
-        $message = "Hello";
-        include '../view/vehicle-management.php';
         // Get the classificationId
         $classificationId = filter_input(INPUT_GET, 'classificationId', FILTER_SANITIZE_NUMBER_INT);
         // Fetch the vehicles by classificationId from the DB
         $inventoryArray = getInventoryByClassification($classificationId);
         // Convert the array to a JSON object and send it back
         echo json_encode($inventoryArray);
-    break;
+        break;
     case 'mod': 
         $invId = filter_input(INPUT_GET, 'invId', FILTER_VALIDATE_INT);
         $invInfo = getInvItemInfo($invId);
@@ -109,7 +108,7 @@ switch ($action) {
         include '../view/vehicle-update.php';
         exit;
 
-    break;
+        break;
     case 'updateVehicle':
         // Filter and store the data
         $invMake = trim(filter_input(INPUT_POST, 'invMake', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
@@ -145,16 +144,19 @@ switch ($action) {
             include '../view/vehicle-update.php';
             exit;
         }
-    break;
+        break;
     case 'del':
         $invId = filter_input(INPUT_GET, 'invId', FILTER_VALIDATE_INT);
         $invInfo = getInvItemInfo($invId);
+
+        $classificationList = buildClassificationList($classifications);
+
         if (count($invInfo) < 1) {
 		$message = 'Sorry, no vehicle information could be found.';
 	    }
 	    include '../view/vehicle-delete.php';
 	    exit;   
-    break;
+        break;
     case 'deleteVehicle':
         $invMake = filter_input(INPUT_POST, 'invMake', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $invModel = filter_input(INPUT_POST, 'invModel', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -173,14 +175,37 @@ switch ($action) {
             header('location: /phpmotors/vehicles/');
             exit;
         }
-    break;
+        break;
     case 'msg':
         $message = "something";
         include '../view/vehicle-management.php';
-    break;
+        break;
+    case 'classification':
+        $classificationName = filter_input(INPUT_GET, 'classificationName', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $vehicles = getVehiclesByClassification($classificationName);
+
+        if(!count($vehicles)) {
+            $message = "<p class='notice'>Sorry, no $classificationName could be found.</p>";
+        } else {
+            $vehicleDisplay = buildVehiclesDisplay($vehicles);
+        }
+        
+        include '../view/classification.php';
+        break;
+    case 'vehicle-detail':
+        $classificationName = filter_input(INPUT_GET, 'classificationName', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $vehicles = getVehiclesByClassification($classificationName);
+
+        if(!count($vehicles)) {
+            $message = "<p class='notice'>Sorry, no $classificationName could be found.</p>";
+        } else {
+            $vehicleDisplay = buildSpecificVehicleDisplay($vehicles);
+        }
+        
+        include '../view/vehicle-detail.php';
+        break;
     default:
-        $classificationList = buildClassificationList($classifications); 
-        //$message = "OK";   
+        $classificationList = buildClassificationList($classifications);  
         include '../view/vehicle-management.php';
         break;
 }

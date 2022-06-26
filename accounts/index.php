@@ -140,6 +140,80 @@ switch ($action) {
         session_destroy();
         include '../view/home.php';
         break;
+    case 'client-update':
+        include '../view/client-update.php';
+        break;
+    case 'account-update':
+        $clientFirstname = trim(filter_input(INPUT_POST, 'clientFirstname', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+        $clientLastname = trim(filter_input(INPUT_POST, 'clientLastname', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+        $clientEmail = trim(filter_input(INPUT_POST, 'clientEmail', FILTER_SANITIZE_EMAIL));
+        $clientId = trim(filter_input(INPUT_POST, 'clientId', FILTER_SANITIZE_NUMBER_INT));
+
+        // Check that the email and password are valid
+        $clientEmail = checkEmail($clientEmail);
+
+        // Check for existing email address
+        $existingEmail = checkExistingEmail($clientEmail);
+        if ($clientEmail != $_SESSION['clientData']['clientEmail']) {
+            if($existingEmail) {
+                $message = '<p class="notice">That email address already exists. Do you want to login instead?</p>';
+                include '../view/login.php';
+                exit;
+            }
+        }
+
+        // Check for missing data
+        if(empty($clientFirstname) || empty($clientLastname) || empty($clientEmail)){
+            $message = '<p>Please provide information for all empty form fields.</p>';
+            include '../view/client-update.php';
+        exit;
+        }
+
+        // Send the data to the model
+        $regOutcome = updateClient($clientFirstname, $clientLastname, $clientEmail, $clientId);
+
+        // Check and report the result
+        if($regOutcome === 1){
+            // get clientData by id
+            $clientData = getClientById($clientId);
+            array_pop($clientData);
+            $_SESSION['clientData'] = $clientData;
+
+            // update message
+            $_SESSION['message'] = "<p>Thanks for updating your information $clientFirstname.";
+            header('Location: /phpmotors/accounts/');
+            exit;
+        } else {
+            $message = "<p>Sorry $clientFirstname, but the update failed. Please try again.</p>";
+            include '../view/client-update.php';
+            exit;
+        }
+        break;
+    case 'password-change':
+        $clientPassword = trim(filter_input(INPUT_POST, 'clientPassword', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+        $clientId = trim(filter_input(INPUT_POST, 'clientId', FILTER_SANITIZE_NUMBER_INT));
+        
+        $checkPassword = checkPassword($clientPassword);
+
+        // Hash the checked password
+        $hashedPassword = password_hash($clientPassword, PASSWORD_DEFAULT);
+        // Send the data to the model
+        $regOutcome = updatePassword($hashedPassword, $clientId);
+        if($regOutcome === 1){
+            // get clientData by id
+            $clientData = getClientById($clientId);
+            array_pop($clientData);
+            $_SESSION['clientData'] = $clientData;
+
+            $_SESSION['message'] = "<p>Thanks for updating your information $clientFirstname.";
+            header('Location: /phpmotors/accounts/');
+            exit;
+        } else {
+            $message = "<p>Sorry $clientFirstname, but the update failed. Please try again.</p>";
+            include '../view/client-update.php';
+            exit;
+        }
+        break;
     case 'home':
         include '/phpmotors/view/home.php';
         break;

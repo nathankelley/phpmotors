@@ -9,6 +9,10 @@ session_start();
 require_once 'library/connections.php';
 // PHP Motors model
 require_once 'model/main-model.php';
+// vehicles model
+require_once 'model/vehicles-model.php';
+// Get the function library
+require 'library/functions.php';
 
 // get the array of classifications
 $classifications = getClassifications();
@@ -16,14 +20,7 @@ $classifications = getClassifications();
     //exit;
 
 // navigation bar using $classifications array
-$navList = '<ul id="nav">';
-$navList .= "<li><a href='/phpmotors/index.php' title='View the PHP Motors home page'>Home</a></li>";
-foreach ($classifications as $classification) {
- $navList .= "<li><a href='/phpmotors/index.php?action=".urlencode($classification['classificationName'])."' title='View our $classification[classificationName] product line'>$classification[classificationName]</a></li>";
-}
-$navList .= '</ul>';
-//echo $navList;
-//exit;
+$navList = buildNavList($classifications);
 
 $action = filter_input(INPUT_POST, 'action');
 if ($action == NULL) {

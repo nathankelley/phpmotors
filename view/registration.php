@@ -47,7 +47,7 @@
                     <span>Passwords must be at least 8 characters and contain at least 1 number, 1 capital letter and 1 special character</span><br>
                     <input type="password" id="password" name="clientPassword" size="25" required pattern="(?=^.{8,}$)(?=.*\d)(?=.*\W+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"><br>
                 </label>
-                <button type="button" id="showPassword" onclick="">
+                <button type="button" id="showPassword">
                     Show Password
                 </button><br><br>
 
