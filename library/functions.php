@@ -54,13 +54,13 @@ function buildClassificationList($classifications){
 function buildVehiclesDisplay($vehicles){
     $dv = '<ul id="inv-display">';
     foreach ($vehicles as $vehicle) {
-     $dv .= '<a href="/phpmotors/vehicles/?action="vehicle-detail&classificationId"" alt="">';
+     $dv .= '<a href="/phpmotors/vehicles/index.php?action=vehicle-detail&invId='.urlencode($vehicle['invId']).'">';
      $dv .= '<div class="vehicle-div">';
      $dv .= '<li>';
      $dv .= "<img src='$vehicle[invThumbnail]' alt='Image of $vehicle[invMake] $vehicle[invModel] on phpmotors.com'>";
      $dv .= '<hr>';
      $dv .= "<h2>$vehicle[invMake] $vehicle[invModel]</h2>";
-     $dv .= "<span>$vehicle[invPrice]</span>";
+     $dv .= "<span>Price: $$vehicle[invPrice]</span>";
      $dv .= '</li>';
      $dv .= '</div>';
      $dv .= '</a>';
@@ -70,18 +70,21 @@ function buildVehiclesDisplay($vehicles){
    }
 
 // THIS FUNCTION WILL DISPLAY VEHICLE INFO
-function buildSpecificVehicleDisplay($vehicles) {
+function buildSpecificVehicleDisplay($vehicle) {
     $dv = '<div id="vehicle-display"';
-    foreach ($vehicles as $vehicle) {
+        $dv .= "<div id='display-child-left'>";
         $dv .= "<figure>";
-        $dv .= "<img src='$vehicle[invImage]' alt='Image of $vehicle[invMake] $vehicle[invModel] on phpmotors.com'>";
-        $dv .= "<figcaption>$vehicle[invPrice]</figcaption>";
+        $dv .= "<img src='$vehicle[invImage]' alt='Image of $vehicle[invMake] $vehicle[invModel] on phpmotors.com' class='specific-vehicle-image'>";
+        $dv .= "<figcaption><strong>Price: $$vehicle[invPrice]</strong></figcaption>";
         $dv .= "</figure>";
+        $dv .= "</div>";
+        $dv .= "<div id='display-child-right'>";
         $dv .= "<h2>$vehicle[invMake] $vehicle[invModel]</h2>";
         $dv .= "<p>$vehicle[invDescription]</p>";
-        $dv .= "<h3>$vehicle[invColor]</h3>";
-        $dv .= "<h3>$vehicle[invStock]</h3>";
-       }
+        $dv .= "<h3>Color: $vehicle[invColor]</h3>";
+        $dv .= "<h3># in Stock: $vehicle[invStock]</h3>";
+        $dv .= "</div>";
+       
        $dv .= '</div>';
        return $dv;
 }

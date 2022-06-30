@@ -133,6 +133,6 @@ function getVehiclesByClassification($classificationName){
     $vehicles = $stmt->fetchAll(PDO::FETCH_ASSOC);
     $stmt->closeCursor();
     return $vehicles;
-   }
+   } 
 
 ?>

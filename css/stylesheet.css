@@ -2,21 +2,16 @@ body {
     width: 100%;
     margin: auto;
 }
-
 #nav {
     margin: 0;
     padding: 0;
     overflow: hidden;
 }
-
-
 #account-link {
     margin-left: 200px;
     float: right;
     color:#3a3a3a;
 }
-
-
 #wrapper {
     display: flex;
     flex-direction: column;
@@ -24,22 +19,17 @@ body {
     width: 100%;
     margin: auto;
 }
-
 nav {
     background-color: #3a3a3a;
     margin-top: 1%;
 }
-
 #footer-notes {
     display: flex;
     justify-content: center;
     text-align: center;
 }
-
 hr {border-top: 3px solid #3a3a3a;}
-
 #nav li {display: inline;}
-
 #nav a {
     display: inline-flex;
     color: #ffffff;
@@ -47,22 +37,21 @@ hr {border-top: 3px solid #3a3a3a;}
     padding: 14px 12px;
     text-decoration: none;
 }
-
 #nav li a:hover {background-color: #4c96d7;}
-
 h1, a, p, form, button{
     font-family: 'Share Tech Mono', monospace;
     text-decoration: none;
 }
-h2, h3 {
+h2 {
     font-family: 'Share Tech Mono', monospace;
     color: #4c96d7;
 }
-
+h3 {
+    font-family: 'Share Tech Mono', monospace;
+}
 #img-info {
     padding-left: 3%;
 }
-
 #main-image {
     width: 100%;
     height: auto;
@@ -176,30 +165,27 @@ form {
     color:#ffffff;
 }
 #registerClient {
-    background-color:#4c96d7;
-    
+    background-color:#4c96d7;   
 }
+
 
 /*************    FOR USER ADMIN PAGE   ****************/
 .user-data {
     font-family: 'Share Tech Mono', monospace;
 }
-
 #welcome-logout-link {
     display: flex;
     flex-direction: row;
     float: right;
     padding: 2%;
 }
-
 header {
     font-family: 'Share Tech Mono', monospace;
 }
-
-
 #admin-inv-man, #admin-page-head, #account-management-link {
     padding-left: 1%;
 }
+
 
 /*************    FOR SIGN IN PAGE   ****************/
 #newAccountDiv {
@@ -207,6 +193,7 @@ header {
     padding-left: 1%;
     text-decoration: underline;
 }
+
 
 /*************    FOR VEHICLE LISTS   ****************/
 #inv-display {
@@ -219,14 +206,34 @@ header {
 }
 #inv-display li {
     text-align: center;
-    max-width: 200px;
-    height: 250px;
+    max-width: 100%;
+    height: 1%;
     justify-content: space-between;
     border: 1px solid black;
     margin: 1%;
 }
 #inv-display div {
     width: 100%;
+}
+
+
+/*************    FOR VEHICLE LISTS   ****************/
+#vehicle-display {
+    max-width: 100%;
+    display: inline-block;
+}
+figure > img {
+    width: 50%;
+    border: 1px solid grey;
+}
+figcaption {
+    padding-top: 1%;
+    font-family: 'Share Tech Mono', monospace;
+}
+#display-child-right {
+    width: 50%;
+    float: right;
+    padding: 1%;
 }
 
 

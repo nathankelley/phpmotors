@@ -21,13 +21,6 @@
                     echo $navList; ?>  
                 </nav>
             </div>
-        
-
-            <div id="content-title">
-                <h1><?php
-                    echo $classificationName;
-                ?></h1>
-            </div>
 
         <main>
             <div id="message">
@@ -41,11 +34,12 @@
                 echo $vehicleDisplay;
                 } ?>
             </div>
+
+            <footer>
+            <?php require $_SERVER['DOCUMENT_ROOT'].'/phpmotors/snippets/footer.php'; ?>
+            </footer>
         </main>
         <aside></aside>
-        <footer>
-            <?php require $_SERVER['DOCUMENT_ROOT'].'/phpmotors/snippets/footer.php'; ?>
-        </footer>
     </div>
     </body>
 </html>
