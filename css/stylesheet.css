@@ -52,6 +52,9 @@ h3 {
 #img-info {
     padding-left: 3%;
 }
+#content-title {
+    padding-left: 3%;
+}
 #main-image {
     width: 100%;
     height: auto;
@@ -196,10 +199,10 @@ header {
 
 
 /*************    FOR VEHICLE LISTS   ****************/
-#inv-display {
-    list-style-type: none;
+#vehicle-display {
+    margin: auto;
+    display: inline-flex;
     flex-flow: row wrap;
-    justify-content: flex-start;
 }
 #inv-display h2 {
     font-size: 1rem;
@@ -209,39 +212,59 @@ header {
     max-width: 100%;
     height: 1%;
     justify-content: space-between;
-    border: 1px solid black;
+    border: 3px solid black;
     margin: 1%;
+    list-style-type: none;
 }
-#inv-display div {
-    width: 100%;
-}
-
-
-/*************    FOR VEHICLE LISTS   ****************/
-#vehicle-display {
+#inv-display img {
     max-width: 100%;
-    display: inline-block;
 }
-figure > img {
-    width: 50%;
-    border: 1px solid grey;
+h2.vehicle-list-makeModel {
+    color: black;
 }
+
+
+/*************    FOR VEHICLE DETAILS PAGE   ****************/
 figcaption {
     padding-top: 1%;
     font-family: 'Share Tech Mono', monospace;
 }
+#details-display {
+    margin: 3%;
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+}
 #display-child-right {
-    width: 50%;
     float: right;
-    padding: 1%;
+    width: 50%;
+    padding-right: 3%;
 }
 
+
+/*************    FOR IMAGE ADMIN PAGE   ****************/
+#image-admin-main {
+    padding-left: 1%;
+    padding-right: 1%;
+}
 
 /*************    FOR CLIENT UPDATE PAGE   ****************/
-#update-password-form, #account-update-form {
-    padding-left: 1%;
+#upload-image-form {
+    padding: 1%;
+}
+#delete-image-form {
+    padding: 1%;
+}
+fieldset {
+    margin: 1%;
 }
 
+
+/* FOR THUMBNAIL DISPLAYS */
+
+
+
+/*************    MEDIA QUERIES   ****************/
 @media only screen and (min-width: 700px) {
     body { 
         background-image: url("/phpmotors/images/site/small_check.jpg");
@@ -270,5 +293,15 @@ figcaption {
     #content-title {
         padding-left: 1%;
     }
+
+    /* FOR THUMBNAIL DISPLAYS */
+    .thumbnail-image, ul, li {
+        transition: transform .2s;
+        list-style-type: none;  
+    }
+    .thumbnail-image:hover {
+        transform: scale(1.5);
+    }
+    
 }
 

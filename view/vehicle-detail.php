@@ -29,6 +29,12 @@
                 ?>
             </div>
 
+            <div id="thumbnails">
+                <?php if(isset($thumbnailDisplay)){
+                    echo $thumbnailDisplay;
+                } ?>
+            </div>
+
             <div id="vehicle-details">
                 <?php if(isset($vehicleDisplay)){
                 echo $vehicleDisplay;

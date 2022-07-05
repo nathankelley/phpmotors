@@ -10,9 +10,11 @@ require '../library/connections.php';
 // PHP Motors model
 require '../model/main-model.php';
 // vehicles model
-require_once '../model/vehicles-model.php';
+require '../model/vehicles-model.php';
 // Get the function library
 require '../library/functions.php';
+// Get the uploads model
+require '../model/uploads-model.php';
 
 // get the array of classifications
 $classifications = getClassifications();
@@ -193,14 +195,16 @@ switch ($action) {
         include '../view/classification.php';
         break;
     case 'vehicle-detail':
-        
-
         $invId = filter_input(INPUT_GET, 'invId', FILTER_VALIDATE_INT);
         $vehicle = getInvItemInfo($invId);
+
+        // additional images for each vehicle
+        $thumbnails = getThumbnailFromImages($invId);
 
         if(empty($vehicle)) {
             $message = "<p class='notice'>Sorry, no vehicle could be found.</p>";
         } else {
+            $thumbnailDisplay = displayThumbnails($thumbnails);
             $vehicleDisplay = buildSpecificVehicleDisplay($vehicle);
         }
         

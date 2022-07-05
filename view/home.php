@@ -40,7 +40,7 @@
         </div>
 
         <div>
-            <img src="/phpmotors/images/delorean.jpg" alt="DMC Delorean image" id="main-image"/>
+            <img src="/phpmotors/images/vehicles/delorean.jpg" alt="DMC Delorean image" id="main-image"/>
         </div>
 
         <div id="container">
