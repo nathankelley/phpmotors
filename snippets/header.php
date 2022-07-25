@@ -18,4 +18,23 @@
             My Account</a>";
         }
     ?>
+
+    <div id="header-search-bar">
+
+        <?php
+            if (isset($message)) {
+                echo $message;
+            }
+        ?>
+
+        <form method="post" action="/phpmotors/vehicles/index.php" id="search-bar-form">
+            <label>
+            <input type="search" id="search-bar" name="search" required 
+
+            <?php if(isset($search)){ echo "value='$search'"; }; ?> ></label>
+            <button type="submit" name="submit" value="Search" id="search-btn">Search</button>
+            <input type="hidden" name="action" value="search">
+            
+        </form>
+    </div>
 </div>

@@ -144,4 +144,18 @@ function getVehicles(){
 	$stmt->closeCursor();
 	return $invInfo;
 }
+
+
+// THIS FUNCTION WILL HANDLE SEARCH BUTTON QUERIES
+function searchInventory($search){
+    $db = phpmotorsConnect();
+    $sql = 'SELECT * FROM inventory USE INDEX (inventory_make_asc, inv_model_asc) WHERE invMake LIKE "%'.$search.'%" or invModel like 
+    "%'.$search.'%"';
+    $stmt = $db->prepare($sql);
+    $stmt->execute();
+    $searchOutcome = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $stmt->closeCursor();
+    return $searchOutcome;
+}
+
 ?>

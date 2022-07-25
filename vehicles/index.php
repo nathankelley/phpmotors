@@ -184,6 +184,7 @@ switch ($action) {
         break;
     case 'classification':
         $classificationName = filter_input(INPUT_GET, 'classificationName', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        // Send the data to the model
         $vehicles = getVehiclesByClassification($classificationName);
 
         if(!count($vehicles)) {
@@ -209,6 +210,30 @@ switch ($action) {
         }
         
         include '../view/vehicle-detail.php';
+        break;
+    case 'search':  // query database for search items
+        // Filter and store the data
+        $str = trim(filter_input(INPUT_POST, 'search', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+        // remove special characters from search input
+        $search = cleanChars($str);
+        
+        // Send the data to the model
+        $searchOutcome = searchInventory($search);
+
+        // Check for missing data
+        if(empty($search)){
+            $message = '<p>Please enter search information.</p>';
+            include '../view/home.php';
+            exit;
+        } else if (!count($searchOutcome)) {
+            $searchMessage = "<p class='notice'>No search results were returned.</p>";
+            include '../view/search.php';
+            exit;
+        } else {
+            $searchDisplay = buildSearchDisplay($searchOutcome);
+        }
+
+        include '../view/search.php';
         break;
     default:
         $classificationList = buildClassificationList($classifications);  

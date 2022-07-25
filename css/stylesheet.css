@@ -7,11 +7,23 @@ body {
     padding: 0;
     overflow: hidden;
 }
+
+
+/****** FOR HEADER ******/
 #account-link {
     margin-left: 200px;
+    margin-top: 1%;
     float: right;
     color:#3a3a3a;
 }
+#search-bar-form {
+    display: inline-flex;
+    float: right;
+    padding-right: 3%;
+}
+
+
+
 #wrapper {
     display: flex;
     flex-direction: column;
@@ -199,10 +211,11 @@ header {
 
 
 /*************    FOR VEHICLE LISTS   ****************/
-#vehicle-display {
+#inv-display {
     margin: auto;
-    display: inline-flex;
+    display: flex;
     flex-flow: row wrap;
+    
 }
 #inv-display h2 {
     font-size: 1rem;
@@ -236,8 +249,6 @@ figcaption {
     flex-flow: row wrap;
 }
 #display-child-right {
-    float: right;
-    width: 50%;
     padding-right: 3%;
 }
 
@@ -247,6 +258,8 @@ figcaption {
     padding-left: 1%;
     padding-right: 1%;
 }
+
+
 
 /*************    FOR CLIENT UPDATE PAGE   ****************/
 #upload-image-form {
@@ -260,7 +273,42 @@ fieldset {
 }
 
 
-/* FOR THUMBNAIL DISPLAYS */
+/************* FOR SEARCH BAR DISPLAY ****************/
+
+#search-list-display {
+    display: flex;
+    flex-flow: column wrap;
+    width: 80%;
+}
+#search-list-display li {
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+    border: 1px solid black;
+    border-left: 0px;
+    border-right: 0px;
+    margin-bottom: 5%;
+}
+#search-list-display a {
+    color: black;
+}
+.search-list-makeModel {
+    color: black;
+}
+.search-list-price {
+    align-self: flex-end;
+}
+#search-count-div {
+    text-align: center;
+}
+#search-count {
+    color: black;
+}
+#pagenum {
+    text-align: center;
+}
+
+
 
 
 
@@ -294,14 +342,37 @@ fieldset {
         padding-left: 1%;
     }
 
+
+
     /* FOR THUMBNAIL DISPLAYS */
-    .thumbnail-image, ul, li {
-        transition: transform .2s;
-        list-style-type: none;  
+    #thumbnail-display {
+        padding: 3% 0% 0% 3%;
     }
-    .thumbnail-image:hover {
+    li {list-style-type: none;}
+    #details-thumbnail-div > li > img {
+        transition: width 2s, height 2s transform 2s;  
+    }
+    #details-thumbnail-div > li > img:hover {
         transform: scale(1.5);
     }
-    
+
+
+    /************* FOR SEARCH BAR DISPLAY ****************/
+    #search-list-div {
+        text-align: center;
+    }
+    #search-results {
+        width: 80%;
+        margin: auto;
+    }
+    #search-list-display li {
+        display: flex;
+        flex-direction: row;
+        list-style-type: none;
+        border: 1px solid black;
+        border-left: 0px;
+        border-right: 0px;
+        margin-bottom: 5%;
+    }
 }
 

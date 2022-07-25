@@ -71,7 +71,7 @@ function buildVehiclesDisplay($vehicles){
 
 // THIS FUNCTION WILL DISPLAY VEHICLE INFO
 function buildSpecificVehicleDisplay($vehicle) {
-    $dv = '<div id="details-display"';
+    $dv = '<div id="details-display">';
         $dv .= "<img src='$vehicle[imgPath]' alt='Image of $vehicle[invMake] $vehicle[invModel] on phpmotors.com' class='specific-vehicle-image'>";
         $dv .= "<h4>Price: $$vehicle[invPrice]</h4";  
     $dv .= "</div>";
@@ -91,7 +91,9 @@ function displayThumbnails($thumbnails) {
     foreach ($thumbnails as $thumbnail){
         if($thumbnail['imgPrimary'] == 0) {
         $dv .= "<ul id='thumbnails-list'>";
+        $dv .= "<div id='details-thumbnail-div'>";
         $dv .= "<li><img src='$thumbnail[imgPath]' alt='$thumbnail[imgName] class='thumbnail-image'></li>";
+        $dv .= "</div>";
         $dv .= "</ul>";
         }
     }
@@ -257,4 +259,58 @@ function resizeImage($old_image_path, $new_image_path, $max_width, $max_height) 
      imagedestroy($old_image);
    } // ends resizeImage function
 
+
+// Build the display based on search bar values
+function buildSearchDisplay($searchOutcome) {
+
+    $searchCount = 0;
+    $id = "<div id='search-list-div'>";
+    $id .= '<ul id="search-list-display">';
+    foreach ($searchOutcome as $search) {
+     $searchCount++;
+     $id .= '<a href="/phpmotors/vehicles/index.php?action=vehicle-detail&invId='.urlencode($search['invId']).'">';
+     $id .= '<div class="search-div">';
+     $id .= '<li>';
+     $id .= "<img src='$search[invThumbnail]' title='$search[invMake] $search[invModel] image on PHP Motors.com' alt='$search[invMake] $search[invModel] image on PHP Motors.com'>";
+     $id .= "<h2 class='search-list-makeModel'>$search[invMake] $search[invModel]</h2>";
+     $id .= "<span class='search-list-price'>Price: $$search[invPrice]</span>";
+     $id .= '</li>';
+     $id .= '</div>';
+     $id .= '</a>';
+   }
+    $id .= '</ul>';
+
+    // Number of search results
+    $id .= "<div id='search-count-div'>";
+    $id .= "<p id='search-count'>$searchCount results</p>";
+    $id .= "</div>";
+
+    // pagination
+    if(!(isset($pagenum))) {
+        $pagenum = 1;
+    }
+    // Number of rows on page
+    $page_rows = 10;
+    // Page number of last page
+    $end = ceil($searchCount/$page_rows);
+    // make sure page number isn't less than 1 or greater # of results
+    if($pagenum < 1) {
+        $pagenum = 1;
+    } elseif ($pagenum > $end) {
+        $pagenum = $end;
+    }
+    
+    $id .= "<div id='pagenum'>";
+    $id .= "<p>--Page $pagenum of $end--</p>";
+    $id .= "</div>";
+
+    $id .= "</div>";
+    return $id;
+   }
+
+function cleanChars($str) {
+    return preg_replace('/[^A-Za-z0-9\-]/', '', $str);
+}
+
 ?>
+
